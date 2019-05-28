@@ -11,28 +11,23 @@ public class Solution {
         System.out.println(solution.divide(0, 3));
     }
     public int divide(int dividend, int divisor) {
-
-        boolean flag1 = true;
-        boolean flag2 = true;
-        if (dividend < 0){
-            dividend = -dividend;
-            flag1 = false;
+        if (dividend == 0) {
+            return 0;
         }
-        if (divisor < 0){
-            divisor = -divisor;
-            flag2 = false;
+        if (dividend == Integer.MIN_VALUE && divisor == -1) {
+            return Integer.MAX_VALUE;
         }
-
-
-        dividend = Math.abs(dividend);
-        divisor = Math.abs(divisor);
-        int ans = 0;
-        while (dividend >= divisor) {
-            dividend -= divisor;
-            ans++;
+        boolean negative;
+        negative = (dividend ^ divisor) <0;//用异或来计算是否符号相异
+        long t = Math.abs((long) dividend);
+        long d= Math.abs((long) divisor);
+        int result = 0;
+        for (int i=31; i>=0;i--) {
+            if ((t>>i)>=d) {//找出足够大的数2^n*divisor
+                result+=1<<i;//将结果加上2^n
+                t-=d<<i;//将被除数减去2^n*divisor
+            }
         }
-        if (flag1 && flag2 || !flag1 && !flag2)
-            return ans;
-        return -ans;
+        return negative ? -result : result;//符号相异取反
     }
 }

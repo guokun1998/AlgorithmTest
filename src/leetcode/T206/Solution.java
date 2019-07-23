@@ -1,8 +1,19 @@
 package leetcode.T206;
 
 import leetcode.ListNode;
+import org.junit.Test;
 
 public class Solution {
+    @Test
+    public void test1(){
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+        reverseList(head);
+    }
+
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null)
             return head;

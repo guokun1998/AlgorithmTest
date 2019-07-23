@@ -1,4 +1,4 @@
-package leetcode.T107;
+package leetcode.T103;
 
 import leetcode.TreeNode;
 
@@ -8,16 +8,18 @@ import java.util.List;
 
 /**
  * @author guokun
- * @create 2019-06-27-9:58
+ * @create 2019-06-28-18:29
  */
 public class Solution {
-
     List<List<Integer>> ans = new ArrayList<>();
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         solve(0,root);
-        Collections.reverse(ans);
+        for (int i = 0; i < ans.size(); i++) {
+            if (i % 2 != 0) {
+                Collections.reverse(ans.get(i));
+            }
+        }
         return ans;
-
     }
 
     public void solve(int deep,TreeNode node) {
@@ -32,7 +34,6 @@ public class Solution {
             ArrayList<Integer> list = new ArrayList<>();
             list.add(node.val);
             ans.add(list);
-
         }
         if (node.left != null) {
             solve(deep+1,node.left);

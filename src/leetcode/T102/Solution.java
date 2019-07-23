@@ -1,9 +1,8 @@
-package leetcode.T107;
+package leetcode.T102;
 
 import leetcode.TreeNode;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,9 +12,8 @@ import java.util.List;
 public class Solution {
 
     List<List<Integer>> ans = new ArrayList<>();
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+    public List<List<Integer>> levelOrder(TreeNode root) {
         solve(0,root);
-        Collections.reverse(ans);
         return ans;
 
     }
